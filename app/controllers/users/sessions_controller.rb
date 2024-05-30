@@ -16,6 +16,15 @@ class Users::SessionsController < Devise::SessionsController
       jwt_payload = JWT.decode(request.headers['Authorization'].split(' ').last, Rails.application.credentials.devise_jwt_secret_key!).first
       current_user = User.find(jwt_payload['sub'])
     end
+    def respond_with(resource, _opts = {}) # to get the name of user
+    render json: {
+      user: {
+        id: resource.id,
+        email: resource.email,
+        name: resource.name # Include the user's name
+      }
+    }, status: :ok
+  end
 
     if current_user
       render json: {
