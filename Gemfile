@@ -32,7 +32,7 @@ gem 'rack-cors'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
-
+gem 'gmail'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -40,11 +40,13 @@ gem 'jsonapi-serializer'
 # gem "rack-cors"
 
 group :development, :test do
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 end
 
 group :development do
+  gem 'letter_opener'
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
