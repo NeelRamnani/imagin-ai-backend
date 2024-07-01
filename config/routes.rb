@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :images, only: [:create]
   end
-
+  namespace :api do
+    resources :images, only: [:index]  # Define only the index action for fetching images
+  end
   # Custom routes for Users controller
   put '/users/update_password', to: 'users#update_password'
   put '/users/update', to: 'users#update'

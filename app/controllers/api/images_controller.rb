@@ -1,20 +1,24 @@
-# app/controllers/api/images_controller.rb
-module Api
-  class ImagesController < ApplicationController
-    def create
-      @image = Image.new(image_params)
-  
-      if @image.save
-        render json: { success: true, message: 'Image saved successfully' }, status: :created
-      else
-        render json: { success: false, errors: @image.errors.full_messages }, status: :unprocessable_entity
-      end
+
+
+class Api::ImagesController < ApplicationController
+ 
+  def create
+    @image = Image.new(image_params)
+
+    if @image.save
+      render json: @image, status: :created
+    else
+      render json: { errors: @image.errors.full_messages }, status: :unprocessable_entity
     end
-  
-    private
-  
-    def image_params
-      params.require(:image).permit(:url)
-    end
+  end
+  def index
+    user_id = params[:user_id]
+    images = Image.where(user_id: user_id)
+    render json: images, status: :ok
+  end
+  private
+
+  def image_params
+    params.require(:image).permit(:image_file, :prompt, :user_id)
   end
 end
