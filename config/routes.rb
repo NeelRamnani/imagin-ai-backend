@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get 'search', to: 'search#search'
   # Contacts resource for creating contacts
   resources :contacts, only: [:create]
 
